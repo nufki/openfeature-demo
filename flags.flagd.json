@@ -7,6 +7,15 @@
       },
       "state": "ENABLED",
       "defaultVariant": "off"
+    },
+    "max-retries": {
+      "variants": {
+        "low": 3,
+        "medium": 5,
+        "high": 10
+      },
+      "state": "ENABLED",
+      "defaultVariant": "low"
     }
   }
 }

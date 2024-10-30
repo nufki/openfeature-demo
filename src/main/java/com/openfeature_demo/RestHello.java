@@ -26,4 +26,21 @@ public class RestHello {
 
         return "Hello!";
     }
+
+    @GetMapping("/retries")
+    public String getRetries() {
+        final Client client = openFeatureAPI.getClient();
+        int maxRetries = client.getIntegerValue("max-retries", 5);
+
+        switch (maxRetries) {
+            case 3:
+                return "Low retries configured (3 attempts).";
+            case 5:
+                return "Medium retries configured (5 attempts).";
+            case 10:
+                return "High retries configured (10 attempts).";
+            default:
+                return "Default retries configured (" + maxRetries + " attempts).";
+        }
+    }
 }
