@@ -1,17 +1,22 @@
 package com.openfeature_demo;
 
-import dev.openfeature.sdk.Client;
-import dev.openfeature.sdk.OpenFeatureAPI;
+import dev.openfeature.sdk.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 @RestController
-public class RestHello {
+public class TestAPI {
     private final OpenFeatureAPI openFeatureAPI;
 
     @Autowired
-    public RestHello(OpenFeatureAPI OFApi) {
+    public TestAPI(OpenFeatureAPI OFApi) {
         this.openFeatureAPI = OFApi;
     }
 
@@ -42,5 +47,26 @@ public class RestHello {
             default:
                 return "Default retries configured (" + maxRetries + " attempts).";
         }
+    }
+
+    @GetMapping("/isColorYellow")
+    public String isColorYellow(@RequestParam(value = "color", defaultValue = "black") String color) {
+        final Client client = openFeatureAPI.getClient();
+        MutableContext context = new MutableContext();
+        context.add("color", color);
+        boolean feature = client.getBooleanValue("isColorYellow", false, context);
+        return "Feature enabled: " + feature;
+    }
+
+    @GetMapping("/isNewFeatureEnabled")
+    public String isNewFeatureEnabled(@RequestHeader(value = "group", defaultValue = "NoAccessGroup") String group) {
+        final Client client = openFeatureAPI.getClient();
+
+        // Create a context with the user group information from token....
+        MutableContext context = new MutableContext();
+        context.add("group", group);
+        boolean feature = client.getBooleanValue("newFeature", false, context);
+        return "Feature enabled: " + feature;
+
     }
 }

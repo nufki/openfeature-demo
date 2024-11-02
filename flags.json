@@ -1,0 +1,84 @@
+{
+  "flags": {
+    "welcome-message": {
+      "variants": {
+        "on": true,
+        "off": false
+      },
+      "state": "ENABLED",
+      "defaultVariant": "off"
+    },
+    "max-retries": {
+      "variants": {
+        "low": 3,
+        "medium": 5,
+        "high": 10
+      },
+      "state": "ENABLED",
+      "defaultVariant": "medium"
+    },
+    "isColorYellow": {
+      "state": "ENABLED",
+      "variants": {
+        "on": true,
+        "off": false
+      },
+      "defaultVariant": "off",
+      "targeting": {
+        "if": [
+          {
+            "==": [
+              {
+                "var": [
+                  "color"
+                ]
+              },
+              "yellow"
+            ]
+          },
+          "on",
+          "off"
+        ]
+      }
+    },
+    "newFeature": {
+      "state": "ENABLED",
+      "defaultVariant": "off",
+      "variants": {
+        "on": true,
+        "off": false
+      },
+      "targeting": {
+        "if": [
+          {
+            "or": [
+              {
+                "==": [
+                  {
+                    "var": [
+                      "group"
+                    ]
+                  },
+                  "Mitarbeiter"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": [
+                      "group"
+                    ]
+                  },
+                  "Testers"
+                ]
+              }
+            ]
+          },
+          "on",
+          "off"
+        ]
+      }
+    }
+  }
+}
+
