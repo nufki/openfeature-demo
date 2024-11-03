@@ -44,4 +44,39 @@ curl -X GET http://localhost:8080/isNewFeatureEnabled -H "group: Mitarbeiter"
 Feature enabled: true
 ```
 
+# Use Flapt (https://www.flipt.io/) instead of flagd
+1. configure service to use 'flipt' FeatureProvider
+    ```application.properties
+    #demo.featureProvider=flagd
+    demo.featureProvider=flipt
+    ```
+1. Run Flapt (on Port 8081!): https://docs.flipt.io/introduction
+
+    ```
+    docker run -d \
+        -p 8081:8080 \
+        -p 9000:9000 \
+        -v $HOME/flipt:/var/opt/flipt \
+        docker.flipt.io/flipt/flipt:latest
+    ```
+1. create a segement with 'MAs':
+    - "Match Type=All"
+    - Constraint: Type=String, Property=contract, Operator='IS ONE OF', Values='59333-0006,59444-0006'
+1. create a Flag
+    - Key=`special_feature`
+    - Type=Boolean
+    - Default Rollout: Value=false
+    - new Rollout: Segement='MAs', Value=true
+1. try
+    ```
+    curl -X GET http://localhost:8080/isSpecialFeatureEnabled -H "Authentication: 59333-0006"
+    Feature enabled: true
+    curl -X GET http://localhost:8080/isSpecialFeatureEnabled -H "Authentication: 59333-0007"
+    Feature enabled: false
+    ```
+
+
+
+
+
 
