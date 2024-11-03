@@ -1,0 +1,339 @@
+{
+	"info": {
+		"_postman_id": "523d3934-2c25-4847-85c6-1ce525d0145b",
+		"name": "OpenFeature",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6832566"
+	},
+	"item": [
+		{
+			"name": "signup new client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"max.muster@gmail.ch\",\n    \"password\": \"1234\", \n    \"fullName\": \"Max Muster\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "switch role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInRva2VuVmVyc2lvbiI6MSwic3ViIjoia2VpLm51ZmVyQGdtYWlsLmNvbSIsImlhdCI6MTczMDc4ODM0NSwiZXhwIjoxNzMwNzkxOTQ1fQ.PUbImefPis498hbmuOKP4By82qLbPoUy5u943FojRPE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"max.muster@gmail.ch\",\n    \"role\": \"EMPLOYEE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admins/switch-role",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admins",
+						"switch-role"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "client login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"max.muster@gmail.ch\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"kei.nufer@gmail.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInN1YiI6ImtlaS5udWZlckBnbWFpbC5jb20iLCJpYXQiOjE3MzA3Mjc3MTgsImV4cCI6MTczMDczMTMxOH0.QTNXgsqsK0WhGTwdx9X-8LGCF-jo8mx8ujx0NFCiP94",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"new-admin@gmail.ch\",\n    \"password\": \"1234\", \n    \"fullName\": \"Admin Muster\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInRva2VuVmVyc2lvbiI6MSwic3ViIjoia2VpLm51ZmVyQGdtYWlsLmNvbSIsImlhdCI6MTczMDc0MjY1OCwiZXhwIjoxNzMwNzQ2MjU4fQ._DGz9HZFP39HJH-JyefXjRDl-KBuqAn4gzZLlAR9sL4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users me",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInRva2VuVmVyc2lvbiI6MSwic3ViIjoia2VpLm51ZmVyQGdtYWlsLmNvbSIsImlhdCI6MTczMDc0MjY1OCwiZXhwIjoxNzMwNzQ2MjU4fQ._DGz9HZFP39HJH-JyefXjRDl-KBuqAn4gzZLlAR9sL4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hello feature (unprotected)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/unprotected-api/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unprotected-api",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "max-retries feature (unprotected)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/unprotected-api/retries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unprotected-api",
+						"retries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isColorYellow feature (unprotected)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/unprotected-api/isColorYellow?color=yellow",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unprotected-api",
+						"isColorYellow"
+					],
+					"query": [
+						{
+							"key": "color",
+							"value": "yellow"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isNewFeatureEnabled feature (protected)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9FTVBMT1lFRSIsInRva2VuVmVyc2lvbiI6Miwic3ViIjoibWF4Lm11c3RlckBnbWFpbC5jaCIsImlhdCI6MTczMDc4ODQxMCwiZXhwIjoxNzMwNzkyMDEwfQ.hvQEj1TspMfM3nziLs2_RWfby1e0YhuseiHC35g7dCE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/isNewFeatureEnabled",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"isNewFeatureEnabled"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

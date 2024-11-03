@@ -1,19 +1,20 @@
-package com.openfeature_demo;
+package com.openfeature_demo.controllers;
 
-import dev.openfeature.sdk.*;
+import com.openfeature_demo.openfeature.RaiContext;
+import dev.openfeature.sdk.Client;
+import dev.openfeature.sdk.MutableContext;
+import dev.openfeature.sdk.OpenFeatureAPI;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-public class TestAPI {
+@RequestMapping("/unprotected-api")
+public class OpenFeatureController {
     private final OpenFeatureAPI openFeatureAPI;
 
     @Autowired
-    public TestAPI(OpenFeatureAPI OFApi) {
+    public OpenFeatureController(OpenFeatureAPI OFApi) {
         this.openFeatureAPI = OFApi;
     }
 
@@ -54,19 +55,6 @@ public class TestAPI {
         boolean feature = client.getBooleanValue("isColorYellow", false, context);
         return "Feature enabled: " + feature;
     }
-
-    @GetMapping("/isNewFeatureEnabled")
-    public String isNewFeatureEnabled(@RequestHeader(value = "group", defaultValue = "NoAccessGroup") String group) {
-        final Client client = openFeatureAPI.getClient();
-
-        // Create a context with the user group information from token....
-        MutableContext context = new MutableContext();
-        context.add("group", group);
-        boolean feature = client.getBooleanValue("newFeature", false, context);
-        return "Feature enabled: " + feature;
-
-    }
-
 
     @GetMapping("/isSpecialFeatureEnabled")
     public String isSpecialFeatureEnabled(@RequestHeader(value = "Authentication") String contract) {
