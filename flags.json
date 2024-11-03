@@ -78,7 +78,31 @@
           "off"
         ]
       }
-    }
+    },
+    "special-feature": {
+      "state": "ENABLED",
+      "defaultVariant": "false",
+      "variants": {
+        "true": true,
+        "false": false
+      },
+      "targeting": {
+        "if": [
+          {
+            "in": [
+              {
+                "var": "contract"
+              },
+              [
+                "59333-0006",
+                "59444-0006"
+              ]
+            ]
+          },
+          "true"
+        ]
+      }
+    }    
   }
 }
 

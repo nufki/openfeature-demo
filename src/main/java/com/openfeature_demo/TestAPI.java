@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 @RestController
 public class TestAPI {
@@ -66,6 +63,18 @@ public class TestAPI {
         MutableContext context = new MutableContext();
         context.add("group", group);
         boolean feature = client.getBooleanValue("newFeature", false, context);
+        return "Feature enabled: " + feature;
+
+    }
+
+
+    @GetMapping("/isSpecialFeatureEnabled")
+    public String isSpecialFeatureEnabled(@RequestHeader(value = "Authentication") String contract) {
+        final Client client = openFeatureAPI.getClient();
+
+        // Create a context with the user token....
+        MutableContext context = new RaiContext(contract);
+        boolean feature = client.getBooleanValue("special-feature", false, context);
         return "Feature enabled: " + feature;
 
     }
