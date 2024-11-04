@@ -76,6 +76,5 @@ public class TestAPI {
         MutableContext context = new RaiContext(contract);
         boolean feature = client.getBooleanValue("special-feature", false, context);
         return "Feature enabled: " + feature;
-
     }
 }

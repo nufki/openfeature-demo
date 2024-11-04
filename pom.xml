@@ -56,6 +56,11 @@
 			<artifactId>flagd</artifactId>
 			<version>0.9.3</version>
 		</dependency>
+		<dependency>
+			<groupId>dev.openfeature.contrib.providers</groupId>
+			<artifactId>flipt</artifactId>
+			<version>0.1.1</version>
+		</dependency>		
 	</dependencies>
 
 	<build>
