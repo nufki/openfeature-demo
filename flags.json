@@ -56,20 +56,20 @@
                 "==": [
                   {
                     "var": [
-                      "group"
+                      "role"
                     ]
                   },
-                  "Mitarbeiter"
+                  "EMPLOYEE"
                 ]
               },
               {
                 "==": [
                   {
                     "var": [
-                      "group"
+                      "role"
                     ]
                   },
-                  "Testers"
+                  "CLIENT"
                 ]
               }
             ]

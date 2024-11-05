@@ -78,5 +78,49 @@ Feature enabled: true
 
 
 
+# JWT
+To test the feature flag within a JWT Token with basic Role based authentication. Create a new user:
+
+## Signup new Client user: 
+```
+   curl -X POST http://localhost:8080/auth/signup \
+   -H "Content-Type: application/json" \
+   -d '{
+   "email": "max.muster@gmail.ch",
+   "password": "1234",
+   "fullName": "Max Muster"
+   }'
+```
+
+## Login with the new user and store the issued JWT Token
+```
+   curl -X POST http://localhost:8080/auth/login \
+   -H "Content-Type: application/json" \
+   -d '{
+   "email": "max.muster@gmail.ch",
+   "password": "1234"
+   }'
+```
+
+## Call the secured API to test the feature
+```
+curl -X GET http://localhost:8080/api/isNewFeatureEnabled \
+-H "Authorization: Bearer yourtoken"
+```
+Feature enabled: true
+
+## Change the flags.json file content and change from CLIENT to EMPLOYEE and retry
+Feature enabled: false
+
+
+## More apis
+Next to the user api's there are admin API's that allow you to:
+- Create a new administrator user
+- Switch the role of an existing user (here the existing token will become invalid and the user needs to re-authenticate)
+
+Also, in the user API's you can further
+- List all users (only for ADMIN and EMPLOYEE roles)
+- List you as logged in user
+
 
 
