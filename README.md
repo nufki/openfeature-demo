@@ -14,9 +14,9 @@
 
 ## Tests
 ```
-curl -X GET  http://localhost:8080/hello 
+curl -X GET http://localhost:8080/hello 
 Hello!
-curl -X GET  http://localhost:8080/retries
+curl -X GET http://localhost:8080/retries
 Medium retries configured (5 attempts).%
 curl -X GET http://localhost:8080/isColorYellow
 Feature enabled: false
@@ -124,3 +124,17 @@ Also, in the user API's you can further
 
 
 
+## Call flagd via REST
+welcome-message flag:
+```
+curl -X POST "http://localhost:8013/flagd.evaluation.v1.Service/ResolveBoolean" \
+     -d '{"flagKey":"welcome-message","context":{}}' \
+     -H "Content-Type: application/json"
+```
+
+newFeature flag:
+```
+curl -X POST "http://localhost:8013/flagd.evaluation.v1.Service/ResolveBoolean" \
+     -d '{"flagKey":"newFeature","context":{ "role": "CLIENT"}}' \
+     -H "Content-Type: application/json"
+```
